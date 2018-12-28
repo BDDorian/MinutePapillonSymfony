@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formListCreation 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+<div class="row mt-3"></div>
+{{form_start(formListCreation)}}
+{{form_row(formListCreation.name, {'attr': {'placeholder': "Your list's name :" }})}}
+{{form_row(formListCreation.priority, {'attr': {'placeholder': "Your priority"}})}}
+{{form_row(formListCreation.date, {'attr' : {'placeholder': "Choose a date"}})}}
+{{form_row(formListCreation.users,{'attr' : {'placeholder': "Choose the users"}})}}
+<button type="submit" class= "btn btn-success">Save your list</button>
+{{form_end(formListCreation)}}
+{% endblock %}

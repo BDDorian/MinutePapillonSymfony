@@ -1,0 +1,232 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+<div class="row mt-3"></div>
+    <div class="row">
+        <div class="col">
+            <div class="card" id="cardToDo">
+                <div class="card-body">
+                    <h2> To do </h2>
+                    <form id="formCreateTask" method="submit" action="{{path('task')}}">
+                        <input class="btn btn-primary" type="submit" id="buttonCreateNewTask" value="Create a new task">
+                    </form>
+                    <h6 class="card-title"><b>Name of your task :</b></h6>
+                    <p class="card-text" id="nameTaskToDo">{{ myTask.name}}</p>
+                    <h6 class="card-title"><b>Priority of your task :</b></h6>
+                    <p class="card-text" id="priorityTaskToDo">{{myTask.priority}} </p>
+                    <h6 class="card-title"><b>Date of your task :</b></h6>
+                    <p class="card-text" id="dateTaskToDo">{{myTask.datetime|date('Y-m-d')}} </p>
+                    <a  id="buttonToDo" class="btn btn-primary">Next ! </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body" id="cardInProgress">
+                    <h2> In progress </h2>
+                    <h6 class="card-title"><b>Name of your task :</b></h6>
+                    <p class="card-text" id="nameTaskInProgress"></p>
+                    <h6 class="card-title"><b>Priority of your task :</b></h6>
+                    <p class="card-text" id="priorityTaskInProgress"></p>
+                    <h6 class="card-title" id="dateTaskInProgress"><b>Date of your task :</b></h6>
+                    <p class="card-text"> </p>
+                    <a  class="btn btn-primary" id="buttonValidateInProgress">Next !  </a>
+                    <a class="btn btn-primary" id="buttonCancelInProgress">Cancel !  </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body" id="cardToVerify">
+                    <h2> To verify <h2>
+                    <h6 class="card-title"><b>Name of your task :</b></h6>
+                    <p class="card-text" id="nameTaskToVerify"></p>
+                    <h6 class="card-title"><b>Priority of your task :</b></h6>
+                    <p class="card-text" id="priorityTaskToVerify"></p>
+                    <h6 class="card-title" id="dateTaskToVerify"><b>Date of your task :</b></h6>
+                    <p class="card-text"> </p>
+                    <a  class="btn btn-primary" id="buttonValidateToVerify">Next ! </a>
+                    <a  class="btn btn-primary" id="buttonCancelToVerify">Cancel !  </a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body" id="cardDone">
+                    <h2> Done </h2>
+                    <h6 class="card-title"><b>Name of your task :</b></h6>
+                    <p class="card-text" id="nameTaskDone"></p>
+                    <h6 class="card-title"><b>Priority of your task :</b></h6>
+                    <p class="card-text" id="priorityTaskDone"></p>
+                    <h6 class="card-title" id="dateTaskDone"><b>Date of your task :</b></h6>
+                    <p class="card-text"> </p>
+                    <a  class="btn btn-primary" id="buttonValidateDone">Done ! </a>
+                    <a  class="btn btn-primary" id="buttonCancelDone">Cancel ! </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>   
+
+<script>
+
+var buttonToDo = document.getElementById('buttonToDo');
+var buttonCancelInProgress = document.getElementById('buttonCancelInProgress');
+var buttonValidateInProgress = document.getElementById('buttonValidateInProgress');
+var buttonValidateToVerify = document.getElementById('buttonValidateToVerify');
+var buttonCancelToVerify = document.getElementById('buttonCancelToVerify');
+var buttonCancelDone = document.getElementById('buttonCancelDone');
+var buttonValidateDone = document.getElementById('buttonValidateDone');
+var nameTaskToDo = document.getElementById('nameTaskToDo');
+var nameTaskInProgress = document.getElementById('nameTaskInProgress');
+var nameTaskToVerify = document.getElementById('nameTaskToVerify');
+var nameTaskDone = document.getElementById('nameTaskDone');
+var priorityTaskToDo = document.getElementById('priorityTaskToDo');
+var priorityTaskInProgress = document.getElementById('priorityTaskInProgress');
+var priorityTaskToVertify = document.getElementById('priorityTaskToVerify');
+var priorityTaskDone = document.getElementById('priorityTaskDone');
+var dateTaskToDo = document.getElementById('dateTaskToDo');
+var dateTaskInProgress = document.getElementById('dateTaskInProgress');
+var dateTaskToVerify = document.getElementById('dateTaskToVerify');
+var dateTaskDone = document.getElementById('dateTaskDone');
+var buttonCreateNewTask = document.getElementById('buttonCreateNewTask');
+
+var cardToDo = document.getElementById('cardToDo');
+var cardInProgress = document.getElementById('cardInProgress');
+var cardToVerify = document.getElementById('cardToVerify');
+var cardDone = document.getElementById('cardDone');
+
+//Define some constant of the initial task chosen.
+const constNameTaskChosen = document.getElementById('nameTaskToDo').innerHTML;
+const constPriorityTaskChosen = document.getElementById('priorityTaskToDo').innerHTML;
+const constDateTaskChosen = document.getElementById('dateTaskToDo').innerHTML;
+
+//Set the initial button to hidden status.
+buttonValidateInProgress.style.visibility = "hidden";
+buttonValidateToVerify.style.visibility = "hidden";
+buttonValidateDone.style.visibility ="hidden";
+buttonCancelInProgress.style.visibility ="hidden";
+buttonCancelToVerify.style.visibility = "hidden";
+buttonCancelDone.style.visibility = "hidden";
+buttonCreateNewTask.style.visibility = "hidden";
+
+
+
+buttonToDo.onclick = function() {
+
+    nameTaskInProgress.innerHTML = nameTaskToDo.innerHTML;
+    nameTaskToDo.innerHTML = "";
+    priorityTaskInProgress.innerHTML = priorityTaskToDo.innerHTML;
+    priorityTaskToDo.innerHTML = "";
+    dateTaskInProgress.innerHTML = dateTaskToDo.innerHTML;
+    dateTaskToDo.innerHTML = "";
+    buttonCancelInProgress.style.visibility = "visible";
+    buttonValidateInProgress.style.visibility = "visible";
+    cardToDo.style.backgroundColor = "gray";
+    
+}
+
+
+buttonCancelInProgress.onclick = function() {
+
+    nameTaskInProgress.innerHTML = "";
+    dateTaskInProgress.innerHTML = "";
+    priorityTaskInProgress.innerHTML = "";
+
+    // Hydrating the to do card with the const.
+    document.getElementById('nameTaskToDo').innerHTML = constNameTaskChosen;
+    document.getElementById('priorityTaskToDo').innerHTML = constPriorityTaskChosen;
+    document.getElementById('dateTaskToDo').innerHTML = constDateTaskChosen;
+    cardToDo.style.backgroundColor = "white";
+    
+}
+
+
+buttonValidateInProgress.onclick = function() {
+
+    nameTaskToVerify.innerHTML = nameTaskInProgress.innerHTML;
+    priorityTaskToVerify.innerHTML = priorityTaskInProgress.innerHTML;
+    dateTaskToVerify.innerHTML = dateTaskInProgress.innerHTML;
+
+    nameTaskInProgress.innerHTML = "";
+    priorityTaskInProgress.innerHTML = "";
+    dateTaskInProgress.innerHTML = "";
+    buttonCancelToVerify.style.visibility = "visible";
+    buttonValidateToVerify.style.visibility = "visible";
+    cardInProgress.style.backgroundColor = "gray";
+    
+
+
+}
+
+buttonValidateToVerify.onclick = function() {
+
+    nameTaskDone.innerHTML = nameTaskToVerify.innerHTML;
+    priorityTaskDone.innerHTML = priorityTaskToVerify.innerHTML;
+    dateTaskDone.innerHTML = dateTaskToVerify.innerHTML;
+
+    nameTaskToVerify.innerHTML = "";
+    priorityTaskToVerify.innerHTML = "";
+    dateTaskToVerify.innerHTML = "";
+    buttonValidateDone.style.visibility ="visible";
+    buttonCancelDone.style.visibility = "visible";
+    cardToVerify.style.backgroundColor = "gray";
+    
+
+}
+
+buttonCancelToVerify.onclick = function() {
+
+nameTaskToVerify.innerHTML = "";
+dateTaskInProgress.innerHTML = "";
+priorityTaskToVerify.innerHTML = "";
+
+// Hydrating the to do card with the const.
+document.getElementById('nameTaskInProgress').innerHTML = constNameTaskChosen;
+document.getElementById('priorityTaskInProgress').innerHTML = constPriorityTaskChosen;
+document.getElementById('dateTaskToDo').innerHTML = constDateTaskChosen;
+cardToVerify.style.backgroundColor = "white";
+cardInProgress.style.backgroundColor= "white";
+
+
+}
+
+buttonCancelDone.onclick = function() {
+
+nameTaskDone.innerHTML = "";
+dateTaskInProgress.innerHTML = "";
+priorityTaskDone.innerHTML = "";
+
+// Hydrating the to do card with the const.
+document.getElementById('nameTaskToVerify').innerHTML = constNameTaskChosen;
+document.getElementById('priorityTaskToVerify').innerHTML = constPriorityTaskChosen;
+document.getElementById('dateTaskToDo').innerHTML = constDateTaskChosen;
+
+cardToVerify.style.backgroundColor = "white";
+
+}
+
+buttonValidateDone.onclick = function() {
+
+    nameTaskDone.innerHTML = "";
+    priorityTaskDone.innerHTML = "";
+    dateTaskDone.innerHTML = "";
+    buttonValidateInProgress.style.visibility = "hidden";
+    buttonValidateToVerify.style.visibility = "hidden";
+    buttonValidateDone.style.visibility ="hidden";
+    buttonCancelInProgress.style.visibility ="hidden";
+    buttonCancelToVerify.style.visibility = "hidden";
+    buttonCancelDone.style.visibility = "hidden";
+    buttonToDo.style.visibility = "hidden";
+    buttonCreateNewTask.style.visibility = "visible";
+}
+
+</script>
+
+{% endblock %}

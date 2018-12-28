@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formRegistration 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+<h1> Registration of your new account </h1>
+
+{{ form_start(formRegistration) }}
+
+{{ form_row(formRegistration.name, {'attr': {'placeholder': "Your name"}}) }}
+{{ form_row(formRegistration.surname, {'attr': {'placeholder': "Your surname"}}) }}
+{{ form_row(formRegistration.pseudo, {'attr' : {'placeholder': "Your pseudo" }}) }}
+{{ form_row(formRegistration.password, {'attr': {'placeholder': "Your password" }}) }}
+{{ form_row(formRegistration.comfirmPassword, {'attr': {'placeholder': "Confirm your password"}}) }}
+
+
+<button type="submit" class= "btn btn-success">Register !</button>
+{{form_end(formRegistration) }}
+{% endblock %}

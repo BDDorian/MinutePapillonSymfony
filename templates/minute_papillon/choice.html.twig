@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formChosenList 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+<div class="row mt-3"></div>
+<h2> Choose your list </h2>
+{{form_start(formChosenList)}}
+{{form_row(formChosenList.name, {'attr': {'placeholder': "Your list's name :" }})}}
+<button type="submit" class= "btn btn-success">Choose and go !</button>
+
+{{form_end(formChosenList)}}
+{% endblock %}

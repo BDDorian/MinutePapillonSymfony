@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formCreateTask 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+<div class="row mt-3"></div>
+{{form_start(formCreateTask)}}
+{{form_row(formCreateTask.name, {'attr': {'placeholder': "Your task's name :" }})}}
+{{form_row(formCreateTask.priority, {'attr': {'placeholder': "Your priority"}})}}
+{{form_row(formCreateTask.datetime, {'attr' : {'placeholder': "Choose a date"}})}}
+{{form_row(formCreateTask.listid)}}
+<button type="submit" class= "btn btn-success">Save it !</button>
+{{form_end(formCreateTask)}}
+
+{% endblock %}
